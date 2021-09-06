@@ -34,11 +34,23 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/notice", notice);
+app.use("/notice", notice, cors("https://gyankunjacademy.herokuapp.com/"));
 app.use("/mail", sendMail);
-app.use("/showNotice", showNotice);
-app.use("/updateNotice", updateNotice);
-app.use("/postNotice", postNotice);
+app.use(
+  "/showNotice",
+  showNotice,
+  cors("https://gyankunjacademy.herokuapp.com/")
+);
+app.use(
+  "/updateNotice",
+  updateNotice,
+  cors("https://gyankunjacademy.herokuapp.com/")
+);
+app.use(
+  "/postNotice",
+  postNotice,
+  cors("https://gyankunjacademy.herokuapp.com/")
+);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
