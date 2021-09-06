@@ -12,6 +12,7 @@ var sendMail = require("./routes/mail");
 var showNotice = require("./routes/showNotice");
 var updateNotice = require("./routes/updateNotice");
 var postNotice = require("./routes/postNotice");
+const { get } = require("http");
 
 var app = express();
 
@@ -21,7 +22,7 @@ app.set("view engine", "jade");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*", methods: [get, post] }));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
