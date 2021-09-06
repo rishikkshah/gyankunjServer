@@ -1,8 +1,8 @@
 const PDFDocument = require("pdfkit");
-var stream = doc.pipe(blobStream());
 
 function createNotice(res, data) {
   let doc = new PDFDocument({ size: "A4", margin: 50 });
+  // var stream = doc.pipe(blobStream());
 
   generateHeader(doc);
   generateBody(doc, data);
@@ -10,12 +10,12 @@ function createNotice(res, data) {
 
   doc.end();
   //   doc.pipe(fs.createWriteStream("notice.pdf"));
-  // res.contentType("application/pdf");
-  // doc.pipe(res);
+  res.contentType("application/pdf");
+  doc.pipe(res);
 
-  stream.on("finish", function () {
-    res.send(stream.toBlobURL("application/pdf"));
-  });
+  // stream.on("finish", function () {
+  //   res.send(stream.toBlobURL("application/pdf"));
+  // });
 }
 
 function generateHeader(doc) {
