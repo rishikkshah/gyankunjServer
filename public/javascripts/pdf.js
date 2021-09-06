@@ -10,8 +10,6 @@ function createNotice(res, data) {
   doc.end();
   //   doc.pipe(fs.createWriteStream("notice.pdf"));
   res.contentType("application/pdf");
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
   doc.pipe(res);
 }
 
