@@ -7,7 +7,7 @@ var cors = require("cors");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var notice = require("./routes/notice");
+var notices = require("./routes/notice");
 var sendMail = require("./routes/mail");
 var showNotice = require("./routes/showNotice");
 var updateNotice = require("./routes/updateNotice");
@@ -35,23 +35,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/notice", notice, cors("https://gyankunjacademy.herokuapp.com/"));
+app.use("/notices", notices);
 app.use("/mail", sendMail);
-app.use(
-  "/showNotice",
-  showNotice,
-  cors("https://gyankunjacademy.herokuapp.com/")
-);
-app.use(
-  "/updateNotice",
-  updateNotice,
-  cors("https://gyankunjacademy.herokuapp.com/")
-);
-app.use(
-  "/postNotice",
-  postNotice,
-  cors("https://gyankunjacademy.herokuapp.com/")
-);
+app.use("/showNotice", showNotice);
+app.use("/updateNotice", updateNotice);
+app.use("/postNotice", postNotice);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
