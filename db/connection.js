@@ -1,7 +1,7 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
-
 mongoose
-  .connect("mongodb://localhost:27017/gyankunjAcademy", {
+  .connect(process.env.URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
